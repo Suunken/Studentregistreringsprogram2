@@ -196,7 +196,7 @@ namespace Studentregistreringsprogram
 
         public void GitProblem()
         {
-
+            Console.WriteLine("2025-03-18");
         }
 
 
