@@ -146,7 +146,7 @@ namespace Studentregistreringsprogram
 
             foreach (var item in dbCtx.Students)
             {
-                Console.WriteLine($"{item.StudentId} {item.FirstName} {item.LastName} {item.City}");
+                Console.WriteLine($"|{item.StudentId.ToString().PadRight(5)} |{item.FirstName.PadRight(7)} |{item.LastName.PadRight(10)} |{item.City}");
             }
 
         }

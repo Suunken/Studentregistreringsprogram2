@@ -14,9 +14,13 @@ namespace Studentregistreringsprogram
         StudentConfig studentConfig = new StudentConfig();
         public void MenuScreen()
         {
-            int menuSelect;
+            int menuSelect =99;
             do
             {
+                try
+                {
+
+                
                 PrintMenuScreen();
                 switch (menuSelect = Convert.ToInt32(Console.ReadLine()))
                 {
@@ -36,6 +40,13 @@ namespace Studentregistreringsprogram
                         PrintMenuSelectExit();
                         break;
                 }
+                }
+                catch
+                {
+                    Console.Clear();
+                }
+
+
             }
             while (menuSelect != 0);
               
@@ -86,6 +97,7 @@ namespace Studentregistreringsprogram
        
         public void PrintMenuSearchStudent()
         {
+            Console.WriteLine("Hur vill du söka efter studenten?");
             Console.WriteLine("1. Sök via förnamn");
             Console.WriteLine("2. Sök via efternamn");
             Console.WriteLine("3. Sök via ort");
@@ -94,18 +106,91 @@ namespace Studentregistreringsprogram
 
         public void PrintMenuSelectAddStudent()
         {
+
+            string firstName = "";
+            string lastName = "";
+            string city = "";
+
+            ShowStrudent(firstName, lastName, city);
+
             Console.WriteLine("Vad heter den nya studenten i förnamn?");
-            string firstName = Console.ReadLine();
+
+            firstName = Console.ReadLine();
+            if (firstName == "")
+            {
+
+                Console.Clear();
+                Console.WriteLine("Du måste skriva in ett förnamn!");
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vad heter den nya studenten i förnamn?");
+                    firstName = Console.ReadLine();
+
+                } while (firstName == "");
+
+            }
+            
+            ShowStrudent(firstName, lastName, city);
+
             Console.WriteLine("Vad heter den nya studenten i efternamn?");
-            string lastName = Console.ReadLine();
+            lastName = Console.ReadLine();
+
+            if (lastName == "")
+            {
+                Console.Clear();
+                Console.WriteLine("Du måste skriva in ett efternamn!");
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vad heter den nya studenten i efternamn?");
+                    lastName = Console.ReadLine();
+                    Console.Clear();
+                } while (lastName == "");
+            }
+            ShowStrudent(firstName, lastName, city);
+
             Console.WriteLine("Vilken ort är eleven från?");
-            string city = Console.ReadLine();
-            studentConfig.AddStudent(firstName,lastName,city);
+            city = Console.ReadLine();
+
+            if (city == "")
+            {
+                Console.Clear();
+                Console.WriteLine("Du måste skriva in en ort!");
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Vilken ort är eleven från?");
+                    city = Console.ReadLine();
+                    Console.Clear();
+                } while (city == "");
+            }
+
+
+            ShowStrudent(firstName, lastName, city);
+            Console.WriteLine("Klicka för att fortsätta");
+            Console.Read();
+            studentConfig.AddStudent(firstName, lastName, city);
         }
+
+        private static void ShowStrudent(string firstName, string lastName, string city)
+        {
+            Console.Clear();
+            Console.WriteLine("Den nya studenten:");
+            Console.WriteLine($"|Förnamn: {firstName.PadRight(10)} \n|Efternamn: {lastName.PadRight(10)} \n|Ort: {city}");
+        }        
 
 
         public void PrintMenuSelectChangeStudent()
         {
+            Console.Clear();
+            Console.WriteLine("Dessa studenter finns nu");
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine($"|{"ID".PadRight(5)} |{"Förnamn".PadRight(5)} |{"Efternamn".PadRight(10)} |{"Ort"} ");
+            Console.WriteLine("--------------------------------------");
             studentConfig.ShowAllStudent();
             Console.WriteLine();
             Console.WriteLine("Ange ID på den du vill ändra på");
@@ -114,6 +199,7 @@ namespace Studentregistreringsprogram
             Console.WriteLine("Du har valt att ändra på:");
             studentConfig.ShowStudent(inputId);
             MenuSelectionChangeSpecificStudentValue(inputId);
+            
 
         }
 
@@ -181,6 +267,9 @@ namespace Studentregistreringsprogram
         public void PrintMenuSelectShowAllStudents()
         {
             Console.Clear();
+            Console.WriteLine("--------------------------------------");
+            Console.WriteLine($"|{"ID".PadRight(5)} |{"Förnamn".PadRight(5)} |{"Efternamn".PadRight(10)} |{"Ort"} ");
+            Console.WriteLine("--------------------------------------");
             studentConfig.ShowAllStudent();
             Console.WriteLine();
             Console.WriteLine("Klicka på valfri knapp för att fortsätta");
