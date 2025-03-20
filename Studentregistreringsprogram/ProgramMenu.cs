@@ -107,16 +107,16 @@ namespace Studentregistreringsprogram
         public void PrintMenuSelectAddStudent()
         {
 
-            string firstName = "";
-            string lastName = "";
-            string city = "";
+            string firstName = string.Empty;
+            string lastName = string.Empty;
+            string city = string.Empty;
 
             ShowStrudent(firstName, lastName, city);
 
             Console.WriteLine("Vad heter den nya studenten i förnamn?");
 
             firstName = Console.ReadLine();
-            if (firstName == "")
+            if (firstName == string.Empty)
             {
 
                 Console.Clear();
@@ -128,7 +128,7 @@ namespace Studentregistreringsprogram
                     Console.WriteLine("Vad heter den nya studenten i förnamn?");
                     firstName = Console.ReadLine();
 
-                } while (firstName == "");
+                } while (firstName == string.Empty);
 
             }
             
@@ -137,7 +137,7 @@ namespace Studentregistreringsprogram
             Console.WriteLine("Vad heter den nya studenten i efternamn?");
             lastName = Console.ReadLine();
 
-            if (lastName == "")
+            if (lastName == string.Empty)
             {
                 Console.Clear();
                 Console.WriteLine("Du måste skriva in ett efternamn!");
@@ -148,14 +148,14 @@ namespace Studentregistreringsprogram
                     Console.WriteLine("Vad heter den nya studenten i efternamn?");
                     lastName = Console.ReadLine();
                     Console.Clear();
-                } while (lastName == "");
+                } while (lastName == string.Empty);
             }
             ShowStrudent(firstName, lastName, city);
 
             Console.WriteLine("Vilken ort är eleven från?");
             city = Console.ReadLine();
 
-            if (city == "")
+            if (city == string.Empty)
             {
                 Console.Clear();
                 Console.WriteLine("Du måste skriva in en ort!");
@@ -166,7 +166,7 @@ namespace Studentregistreringsprogram
                     Console.WriteLine("Vilken ort är eleven från?");
                     city = Console.ReadLine();
                     Console.Clear();
-                } while (city == "");
+                } while (city == string.Empty);
             }
 
 
