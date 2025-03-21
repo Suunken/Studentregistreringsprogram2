@@ -28,6 +28,13 @@ namespace Studentregistreringsprogram
             dbCtx.SaveChanges();
         }
 
+        public void RemoveStudent(int idInput)
+        {
+            StudentIdSearch(idInput);
+            var delete = dbCtx.Students.Where(s => s.StudentId == idInput).FirstOrDefault<Student>();
+            dbCtx.Remove(delete);
+            dbCtx.SaveChanges();
+        }
 
         public Student? StudentIdSearch(int idInput)
         {
@@ -52,7 +59,8 @@ namespace Studentregistreringsprogram
 
             else
             {
-                Console.WriteLine("Hittar ingen med det förnamnet");
+                Console.WriteLine("Hittar ingen med det förnamnet, försök igen");
+                Thread.Sleep(3000);
             }
 
 
@@ -61,7 +69,7 @@ namespace Studentregistreringsprogram
             public void StudentLastNameSearch(string lastNameInput)
         {
 
-            if (dbCtx.Students.Any(s => s.FirstName == lastNameInput))
+            if (dbCtx.Students.Any(s => s.LastName == lastNameInput))
             {
                 var allTheSameName = dbCtx.Students.Where(s => s.LastName == lastNameInput).
                                OrderBy(s => s.LastName)
@@ -74,7 +82,8 @@ namespace Studentregistreringsprogram
 
             else
             {
-                Console.WriteLine("Hittar ingen med det efternamnet");
+                Console.WriteLine("Hittar ingen med det efternamnet, försök igen");
+                Thread.Sleep(3000);
             }
         }
 
@@ -96,7 +105,8 @@ namespace Studentregistreringsprogram
 
             else
             {
-                Console.WriteLine("Hittar ingen ort med det namnet");
+                Console.WriteLine("Hittar ingen ort med det namnet, försök igen");
+                Thread.Sleep(3000);
             }
         }
 
