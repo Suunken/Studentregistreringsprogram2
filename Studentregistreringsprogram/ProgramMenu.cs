@@ -324,11 +324,7 @@ namespace Studentregistreringsprogram
         }
 
 
-        public void Git()
-        {
-            Console.WriteLine("2025-03-18");
-        }
-
+      
 
 
 
