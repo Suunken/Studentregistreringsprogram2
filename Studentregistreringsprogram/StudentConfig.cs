@@ -41,11 +41,8 @@ namespace Studentregistreringsprogram
             return dbCtx.Students.Where(s => s.StudentId == idInput).FirstOrDefault<Student>();
         }
 
-
-
         public void StudentFirstNameSearch(string nameInput)
         {
-
             if (dbCtx.Students.Any(s => s.FirstName == nameInput))
             {
                 var allTheSameName = dbCtx.Students.Where(s => s.FirstName == nameInput).
@@ -53,22 +50,21 @@ namespace Studentregistreringsprogram
                                .ThenBy(s => s.LastName);
                 foreach (var student in allTheSameName)
                 {
-                    Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.FirstName.PadRight(2)} {student.LastName.PadRight(5)} {student.City}");
+                    Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.FirstName.PadRight(7)} {student.LastName.PadRight(10)} {student.City}");
                 }
+                Console.WriteLine("\nTryck på valfri knapp för att fortsätta");
+                Console.Read();
             }
 
             else
             {
-                Console.WriteLine("Hittar ingen med det förnamnet, försök igen");
-                Thread.Sleep(3000);
+                Console.WriteLine("Hittar ingen med det förnamnet, klicka på valfri knapp och försök igen");
+                Console.ReadKey();
             }
-
-
         }
             
             public void StudentLastNameSearch(string lastNameInput)
-        {
-
+            {
             if (dbCtx.Students.Any(s => s.LastName == lastNameInput))
             {
                 var allTheSameName = dbCtx.Students.Where(s => s.LastName == lastNameInput).
@@ -76,37 +72,40 @@ namespace Studentregistreringsprogram
                                .ThenBy(s => s.FirstName);
                 foreach (var student in allTheSameName)
                 {
-                    Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.LastName.PadRight(2)} {student.FirstName.PadRight(5)} {student.City}");
+                    Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.FirstName.PadRight(7)} {student.LastName.PadRight(10)} {student.City}");
                 }
+                Console.WriteLine("\nTryck på valfri knapp för att fortsätta");
+                Console.ReadLine();
             }
 
             else
             {
-                Console.WriteLine("Hittar ingen med det efternamnet, försök igen");
-                Thread.Sleep(3000);
+                Console.WriteLine("Hittar ingen med det efternamnet, klicka på valfri knapp och försök igen");
+                Console.ReadKey();
             }
         }
 
 
         public void StudentCitySearch(string cityInput)
         {
-
             if (dbCtx.Students.Any(s => s.City == cityInput))
             {
                 var allTheSameName = dbCtx.Students.Where(s => s.City == cityInput).
-                               OrderBy(s => s.City)
+                                OrderBy(s => s.City)
                                .ThenBy(s => s.FirstName)
                                .ThenBy(s=>s.LastName);
                 foreach (var student in allTheSameName)
                 {
-                    Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.City.PadRight(2)} {student.FirstName.PadRight(5)} {student.LastName.PadRight(5)}");
+                    Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.FirstName.PadRight(7)} {student.LastName.PadRight(10)} {student.City}");
                 }
+                Console.WriteLine("\nTryck på valfri knapp för att fortsätta");
+                Console.Read();
             }
 
             else
             {
-                Console.WriteLine("Hittar ingen ort med det namnet, försök igen");
-                Thread.Sleep(3000);
+                Console.WriteLine("Hittar ingen ort med det namnet, klicka på valfri knapp och försök igen");
+                Console.ReadKey();
             }
         }
 
@@ -147,7 +146,7 @@ namespace Studentregistreringsprogram
         {
             Student? student = StudentIdSearch(idInput);
 
-            Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.FirstName.PadRight(2)} {student.LastName.PadRight(2)} {student.City}");
+            Console.WriteLine($"{student.StudentId.ToString().PadRight(5)} {student.FirstName.PadRight(7)} {student.LastName.PadRight(10)} {student.City}");
         }
 
         public void ShowAllStudent()
@@ -156,7 +155,8 @@ namespace Studentregistreringsprogram
 
             foreach (var item in dbCtx.Students)
             {
-                Console.WriteLine($"|{item.StudentId.ToString().PadRight(5)} |{item.FirstName.PadRight(7)} |{item.LastName.PadRight(10)} |{item.City}");
+                Console.WriteLine($"{item.StudentId.ToString().PadRight(5)} {item.FirstName.PadRight(7)} {item.LastName.PadRight(10)} {item.City}");
+                Console.WriteLine("--------------------------------------");
             }
 
         }
